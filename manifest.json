@@ -1,0 +1,11 @@
+{
+  "name": "SERENIA VR - Bosque de Otoño",
+  "short_name": "SERENIA VR",
+  "description": "Experiencia inmersiva de realidad virtual en un bosque de otoño.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#090d18",
+  "background_color": "#090d18"
+}

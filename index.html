@@ -4,37 +4,97 @@ html
 <head>
   <meta charset="UTF-8">
   <title>SERENIA VR - Bosque de Otoño</title>
+  <link rel="manifest" href="./manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      background: rgba(9, 12, 18, 0.8);
+      color: #edf5ff;
+      border: 1px solid rgba(183, 210, 255, 0.4);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(146, 180, 255, 0.2);
+      letter-spacing: 0.02em;
+    }
+
+    #themeToggle:hover {
+      background: rgba(20, 30, 44, 0.92);
+    }
+  </style>
 
   <!-- A-Frame -->
   <script src="https://cdn.jsdelivr.net/npm/aframe@1.7.0/dist/aframe.min.js"></script>
 </head>
 
 <body>
+  <button id="themeToggle" type="button">Cambiar a Atardecer</button>
 
   <a-scene
+    id="scene"
     renderer="antialias: true; colorManagement: true; physicallyCorrectLights: false"
-    fog="type: exponential; color: #f6c79a; density: 0.035">
+    fog="type: exponential; color: #090d18; density: 0.06">
 
-    <a-sky color="#F5B67A"></a-sky>
+    <!-- MODO CINEMATOGRÁFICO: ATARDECER -->
+    <a-entity id="dayGroup" visible="false">
+      <a-sky color="#5a3b31"></a-sky>
 
-    <!-- Luz ambiental del atardecer -->
-    <a-entity light="type: hemisphere; color: #ffe7b0; groundColor: #5b4030; intensity: 1.2"></a-entity>
+      <a-entity light="type: hemisphere; color: #ffd9a8; groundColor: #2c1d1a; intensity: 1.1"></a-entity>
 
-    <!-- Sol cálido -->
-    <a-entity
-      position="0 8 -14"
-      geometry="primitive: sphere; radius: 1.2"
-      material="color: #ffbd6b; emissive: #ff9e4d; emissiveIntensity: 0.8">
+      <a-entity
+        position="0 8 -14"
+        geometry="primitive: sphere; radius: 1.4"
+        material="color: #ffc16d; emissive: #ff914d; emissiveIntensity: 1.5">
+      </a-entity>
+
+      <a-entity light="type: directional; color: #ffcb87; intensity: 2.0" position="-2 5 -2"></a-entity>
+      <a-entity light="type: point; color: #ff7c4a; intensity: 1.6; distance: 28" position="0 7 -12"></a-entity>
+      <a-entity light="type: point; color: #ffc2a8; intensity: 0.6; distance: 35" position="-8 6 -18"></a-entity>
     </a-entity>
 
-    <a-entity
-      light="type: directional; color: #ffbf80; intensity: 1.5"
-      position="-2 5 -2">
-    </a-entity>
+    <!-- MODO CINEMATOGRÁFICO: MÍSTICO -->
+    <a-entity id="nightGroup" visible="true">
+      <a-sky color="#070d1a"></a-sky>
 
-    <a-entity
-      light="type: point; color: #ff8e4c; intensity: 1.2; distance: 22"
-      position="0 7 -12">
+      <a-entity
+        position="0 9 -16"
+        geometry="primitive: sphere; radius: 1.2"
+        material="color: #edf4ff; emissive: #b1ccff; emissiveIntensity: 1.1">
+      </a-entity>
+
+      <a-entity id="stars" position="0 0 0">
+        <a-sphere position="-8 7 -10" radius="0.09" color="#f6fbff"></a-sphere>
+        <a-sphere position="-5 9 -12" radius="0.09" color="#e1ebff"></a-sphere>
+        <a-sphere position="-2 8 -15" radius="0.09" color="#f6fbff"></a-sphere>
+        <a-sphere position="2 10 -13" radius="0.09" color="#ebf4ff"></a-sphere>
+        <a-sphere position="5 8 -10" radius="0.09" color="#ecf5ff"></a-sphere>
+        <a-sphere position="8 9 -12" radius="0.09" color="#e2edff"></a-sphere>
+        <a-sphere position="-7 5 -17" radius="0.09" color="#dfeaff"></a-sphere>
+        <a-sphere position="7 6 -18" radius="0.09" color="#dfeaff"></a-sphere>
+        <a-sphere position="0 11 -18" radius="0.09" color="#f9fbff"></a-sphere>
+        <a-sphere position="-10 10 -20" radius="0.09" color="#dfeaff"></a-sphere>
+        <a-sphere position="10 11 -20" radius="0.09" color="#e7f0ff"></a-sphere>
+      </a-entity>
+
+      <a-entity light="type: hemisphere; color: #bfe0ff; groundColor: #120f10; intensity: 0.7"></a-entity>
+      <a-entity light="type: directional; color: #e3f0ff; intensity: 1.2" position="2 6 -2"></a-entity>
+      <a-entity light="type: point; color: #95c5ff; intensity: 1.2; distance: 32" position="0 3 -8"></a-entity>
+      <a-entity light="type: point; color: #b7d6ff; intensity: 0.7; distance: 20" position="-5 2 -12"></a-entity>
+      <a-entity light="type: point; color: #b7d6ff; intensity: 0.7; distance: 20" position="5 2 -15"></a-entity>
+      <a-entity light="type: point; color: #dfeeff; intensity: 0.45; distance: 40" position="-10 7 -20"></a-entity>
     </a-entity>
 
     <!-- ========================= -->
@@ -46,7 +106,7 @@ html
       rotation="-90 0 0"
       width="30"
       height="30"
-      color="#5D4331">
+      color="#120f12">
     </a-plane>
 
 
@@ -59,7 +119,7 @@ html
       rotation="-90 0 0"
       width="4"
       height="25"
-      color="#C9905F">
+      color="#2b2322">
     </a-plane>
 
 
@@ -72,13 +132,13 @@ html
       position="-4 2 -4"
       radius="0.5"
       height="4"
-      color="#5C3B24">
+      color="#171417">
     </a-cylinder>
 
     <a-sphere
       position="-4 4.5 -4"
       radius="2"
-      color="#C96B32">
+      color="#24332e">
     </a-sphere>
 
 
@@ -87,13 +147,13 @@ html
       position="4 2 -7"
       radius="0.5"
       height="4"
-      color="#5C3B24">
+      color="#171417">
     </a-cylinder>
 
     <a-sphere
       position="4 4.5 -7"
       radius="2"
-      color="#D99036">
+      color="#334d49">
     </a-sphere>
 
 
@@ -102,13 +162,13 @@ html
       position="-5 2 -12"
       radius="0.5"
       height="4"
-      color="#5C3B24">
+      color="#171417">
     </a-cylinder>
 
     <a-sphere
       position="-5 4.5 -12"
       radius="2"
-      color="#B94E2C">
+      color="#2d413d">
     </a-sphere>
 
 
@@ -117,14 +177,38 @@ html
       position="5 2 -15"
       radius="0.5"
       height="4"
-      color="#5C3B24">
+      color="#171417">
     </a-cylinder>
 
     <a-sphere
       position="5 4.5 -15"
       radius="2"
-      color="#E0A83B">
+      color="#3f564f">
     </a-sphere>
+
+    <!-- Árbol 5 -->
+    <a-cylinder position="-6 2 -8" radius="0.45" height="3.8" color="#171417"></a-cylinder>
+    <a-sphere position="-6 4.2 -8" radius="1.7" color="#2d413d"></a-sphere>
+
+    <!-- Árbol 6 -->
+    <a-cylinder position="6 2 -10" radius="0.45" height="3.8" color="#171417"></a-cylinder>
+    <a-sphere position="6 4.2 -10" radius="1.7" color="#334d49"></a-sphere>
+
+    <!-- Árbol 7 -->
+    <a-cylinder position="-3 2 -18" radius="0.45" height="3.8" color="#171417"></a-cylinder>
+    <a-sphere position="-3 4.2 -18" radius="1.7" color="#2d413d"></a-sphere>
+
+    <!-- Árbol 8 -->
+    <a-cylinder position="3 2 -19" radius="0.45" height="3.8" color="#171417"></a-cylinder>
+    <a-sphere position="3 4.2 -19" radius="1.7" color="#3f564f"></a-sphere>
+
+    <!-- Árbol 9 -->
+    <a-cylinder position="-7 2 -16" radius="0.4" height="3.6" color="#171417"></a-cylinder>
+    <a-sphere position="-7 4.0 -16" radius="1.5" color="#24332e"></a-sphere>
+
+    <!-- Árbol 10 -->
+    <a-cylinder position="7 2 -17" radius="0.4" height="3.6" color="#171417"></a-cylinder>
+    <a-sphere position="7 4.0 -17" radius="1.5" color="#334d49"></a-sphere>
 
 
     <!-- ========================= -->
@@ -132,15 +216,92 @@ html
     <!-- ========================= -->
 
     <a-camera
+      id="cameraRig"
       position="0 1.6 4">
     </a-camera>
+
+    <a-entity id="dustParticles" position="0 1.5 -6">
+      <a-sphere class="particle" position="-3 0.5 -4" radius="0.06" color="#dfe9ff" opacity="0.65"></a-sphere>
+      <a-sphere class="particle" position="-2 1.2 -7" radius="0.06" color="#dfe9ff" opacity="0.7"></a-sphere>
+      <a-sphere class="particle" position="0 1.8 -9" radius="0.06" color="#dfe9ff" opacity="0.68"></a-sphere>
+      <a-sphere class="particle" position="2 0.8 -8" radius="0.06" color="#dfe9ff" opacity="0.72"></a-sphere>
+      <a-sphere class="particle" position="3 1.4 -6" radius="0.06" color="#dfe9ff" opacity="0.62"></a-sphere>
+      <a-sphere class="particle" position="-4 0.2 -11" radius="0.06" color="#dfe9ff" opacity="0.68"></a-sphere>
+      <a-sphere class="particle" position="4 1.7 -12" radius="0.06" color="#dfe9ff" opacity="0.72"></a-sphere>
+      <a-sphere class="particle" position="-1 2.3 -13" radius="0.06" color="#dfe9ff" opacity="0.64"></a-sphere>
+      <a-sphere class="particle" position="1 1 -15" radius="0.06" color="#dfe9ff" opacity="0.7"></a-sphere>
+      <a-sphere class="particle" position="-2 2.6 -16" radius="0.06" color="#dfe9ff" opacity="0.66"></a-sphere>
+      <a-sphere class="particle" position="2 2.0 -17" radius="0.06" color="#dfe9ff" opacity="0.72"></a-sphere>
+      <a-sphere class="particle" position="0 2.8 -18" radius="0.06" color="#dfe9ff" opacity="0.64"></a-sphere>
+      <a-sphere class="particle" position="-5 1.1 -10" radius="0.06" color="#dfe9ff" opacity="0.68"></a-sphere>
+      <a-sphere class="particle" position="5 2.4 -14" radius="0.06" color="#dfe9ff" opacity="0.7"></a-sphere>
+      <a-sphere class="particle" position="-3 3.0 -18" radius="0.06" color="#dfe9ff" opacity="0.66"></a-sphere>
+      <a-sphere class="particle" position="3 2.8 -19" radius="0.06" color="#dfe9ff" opacity="0.7"></a-sphere>
+    </a-entity>
+
     <a-text value="BIENVENIDO A SERENIA VR"
     position="-3 2 -1"
-    color="#2F1A8C"
+    color="#dfe9ff"
     width="10">
   </a-text>
 
   </a-scene>
+
+  <script>
+    const scene = document.querySelector('#scene');
+    const dayGroup = document.querySelector('#dayGroup');
+    const nightGroup = document.querySelector('#nightGroup');
+    const toggleButton = document.querySelector('#themeToggle');
+    const cameraRig = document.querySelector('#cameraRig');
+
+    let isNightMode = true;
+
+    function applyTheme() {
+      if (isNightMode) {
+        dayGroup.setAttribute('visible', false);
+        nightGroup.setAttribute('visible', true);
+        scene.setAttribute('fog', 'color', '#090d18');
+        scene.setAttribute('fog', 'density', 0.07);
+        toggleButton.textContent = 'Cambiar a Atardecer';
+      } else {
+        dayGroup.setAttribute('visible', true);
+        nightGroup.setAttribute('visible', false);
+        scene.setAttribute('fog', 'color', '#f0b889');
+        scene.setAttribute('fog', 'density', 0.04);
+        toggleButton.textContent = 'Cambiar a Bosque Místico';
+      }
+    }
+
+    toggleButton.addEventListener('click', () => {
+      isNightMode = !isNightMode;
+      applyTheme();
+    });
+
+    function animateCamera() {
+      const t = performance.now() * 0.00045;
+      const x = Math.sin(t) * 0.22;
+      const y = 1.6 + Math.sin(t * 1.3) * 0.06;
+      const z = 4 + Math.cos(t * 1.4) * 0.08;
+      cameraRig.setAttribute('position', { x, y, z });
+      requestAnimationFrame(animateCamera);
+    }
+
+    function animateParticles() {
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach((particle, index) => {
+        const t = performance.now() * 0.001 + index * 0.7;
+        const x = Number(particle.getAttribute('position').x) + Math.sin(t) * 0.04;
+        const y = Number(particle.getAttribute('position').y) + Math.cos(t * 1.6) * 0.05;
+        const z = Number(particle.getAttribute('position').z) + Math.sin(t * 0.9) * 0.04;
+        particle.setAttribute('position', { x, y, z });
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    applyTheme();
+    requestAnimationFrame(animateCamera);
+    requestAnimationFrame(animateParticles);
+  </script>
 
 </body>
 </html>
