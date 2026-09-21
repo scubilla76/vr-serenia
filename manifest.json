@@ -10,7 +10,7 @@
   "background_color": "#090d18",
   "icons": [
     {
-      "src": "./mental-health.png",
+      "src": "./psychology.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
