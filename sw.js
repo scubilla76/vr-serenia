@@ -1,4 +1,4 @@
-const CACHE_NAME = 'serenia-vr-shell-v1';
+const CACHE_NAME = 'serenia-vr-shell-v2';
 const INDEX_URL = new URL('./index.html', self.registration.scope).href;
 const APP_SHELL = [
   new URL('./', self.registration.scope).href,
